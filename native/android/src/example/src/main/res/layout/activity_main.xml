@@ -15,12 +15,22 @@
         tools:context=".MainActivity">
 
         <TextView
-            android:id="@+id/screen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="Add UI to test the plugin"
+            android:text="The plugin output will appear below:"
             android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:singleLine="false"
+            android:fontFamily="monospace"
+            tools:text="{test:\n  {hier:daar}\n}"
+            android:textSize="18sp"/>
+
 
     </LinearLayout>
 </ScrollView>

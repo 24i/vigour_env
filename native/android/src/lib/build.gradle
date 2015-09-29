@@ -16,10 +16,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+    }
 }
 
 dependencies {
-    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    compile 'com.fasterxml.jackson.jr:jackson-jr-objects:2.5.1'
     compile 'io.vigour.plugin:core:0.2-SNAPSHOT'
     compile 'com.android.support:appcompat-v7:21.0.3'
 }
@@ -33,8 +36,7 @@ uploadArchives {
                     + "/extras/android/m2repository/")
             pom.version = '0.2-SNAPSHOT'
             pom.groupId = 'io.vigour.plugin'
-            pom.artifactId = 'plugin'
-            // change the artifactId
+            pom.artifactId = 'env'
         }
     }
 }
