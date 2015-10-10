@@ -4,8 +4,8 @@
   "description": "Provides info about the device, platform and build",
   "main": "lib/index.js",
   "scripts": {
-    "start": "./node_modules/.bin/gaston",
-    "test": "./node_modules/.bin/gaston test browser"
+    "start": "gaston",
+    "test": "gaston test"
   },
   "repository": {
     "type": "git",
@@ -32,9 +32,6 @@
   },
   "dependencies": {
     "vigour-native": "git+ssh://git@github.com:vigour-io/vigour-native.git"
-  },
-  "devDependencies": {
-    "gaston": "^0.14.0"
   },
   "vigour": {
     "plugin": {
