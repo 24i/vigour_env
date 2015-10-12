@@ -31,6 +31,7 @@
     "node": ">=0.12"
   },
   "dependencies": {
+    "npmlog": "^1.2.1",
     "vigour-native": "git+ssh://git@github.com:vigour-io/vigour-native.git"
   },
   "vigour": {
@@ -43,6 +44,15 @@
     }
   },
   "standard": {
-    "globals": [ "describe", "it", "expect", "before", "after", "beforeEach", "afterEach", "sinon" ]
+    "globals": [
+      "describe",
+      "it",
+      "expect",
+      "before",
+      "after",
+      "beforeEach",
+      "afterEach",
+      "sinon"
+    ]
   }
 }
