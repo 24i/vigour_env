@@ -33,7 +33,7 @@
   "dependencies": {
     "npmlog": "^1.2.1",
     "promise": "^7.0.4",
-    "vigour-native": "git+ssh://git@github.com:vigour-io/vigour-native.git"
+    "vigour-native": "git+ssh://git@github.com:vigour-io/vigour-native.git#develop"
   },
   "vigour": {
     "plugin": {
