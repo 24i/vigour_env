@@ -23,7 +23,7 @@ android {
 
 dependencies {
     compile 'com.fasterxml.jackson.jr:jackson-jr-objects:2.5.1'
-    compile 'io.vigour.plugin:core:0.2-SNAPSHOT'
+    compile 'io.vigour.plugin:core:0.3-SNAPSHOT'
     compile 'com.android.support:appcompat-v7:21.0.3'
 }
 
@@ -32,9 +32,8 @@ apply plugin: 'maven'
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "file://localhost" + System.getenv("ANDROID_HOME")
-                    + "/extras/android/m2repository/")
-            pom.version = '0.2-SNAPSHOT'
+            repository(url: mavenLocal().url)
+            pom.version = '0.2'
             pom.groupId = 'io.vigour.plugin'
             pom.artifactId = 'env'
         }

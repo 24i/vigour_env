@@ -38,9 +38,8 @@
   "vigour": {
     "plugin": {
       "android": {
-        "skipInstall": true,
-        "className": "io.vigour.env",
-        "instantiation": "new Env(this, webview)"
+        "className": "io.vigour.plugin.env.EnvPlugin",
+        "instantiation": "new EnvPlugin(this)"
       }
     }
   },
