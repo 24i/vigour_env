@@ -1,5 +1,5 @@
 {
-  "name": "env",
+  "name": "vigour-env",
   "version": "1.0.0",
   "description": "Provides info about the device, platform and build",
   "main": "lib/index.js",
@@ -22,7 +22,7 @@
   "contributors": [
     "Shawn Inder <shawn@vigour.io>"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/vigour-io/env/issues"
   },
@@ -33,7 +33,7 @@
   "dependencies": {
     "npmlog": "^1.2.1",
     "promise": "^7.0.4",
-    "vigour-native": "git+ssh://git@github.com:vigour-io/vigour-native.git#develop"
+    "vigour-wrapper": "0.0.5"
   },
   "vigour": {
     "plugin": {
