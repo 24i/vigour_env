@@ -23,21 +23,8 @@ android {
 
 dependencies {
     compile 'com.fasterxml.jackson.jr:jackson-jr-objects:2.5.1'
-    compile 'io.vigour.plugin:core:0.3-SNAPSHOT'
+    compile 'io.vigour:plugin-core:0.4.1'
     compile 'com.android.support:appcompat-v7:21.0.3'
-}
-
-apply plugin: 'maven'
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: mavenLocal().url)
-            pom.version = '0.2'
-            pom.groupId = 'io.vigour.plugin'
-            pom.artifactId = 'env'
-        }
-    }
 }
 
 task androidJavadocs(type: Javadoc) {
@@ -58,3 +45,30 @@ artifacts {
     archives androidSourcesJar
     archives androidJavadocsJar
 }
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'plugin-env'
+
+    publishedGroupId = 'io.vigour'
+    libraryName = 'Env'
+    artifact = 'plugin-env'
+
+    libraryDescription = 'plugin that provides information about the environment the app runs in'
+
+    siteUrl = 'https://github.com/vigour-io/env'
+    gitUrl = 'https://github.com/vigour-io/env.git'
+
+    libraryVersion = '0.1'
+
+    developerId = 'vigour'
+    developerName = 'Michiel van Liempt'
+    developerEmail = 'dev@vigour.io'
+
+    licenseName = 'The MIT License'
+    licenseUrl = 'http://opensource.org/licenses/mit-license.php'
+    allLicenses = ["MIT"]
+}
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

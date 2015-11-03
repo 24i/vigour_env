@@ -14,3 +14,6 @@ See [tests](test)
 
 ## Building native apps
 See [wrapper](http://github.com/vigour-io/vigour-native)
+
+### Android
+The build process will use the latest version of the plugins library, the latest version is [ ![Download](https://api.bintray.com/packages/vigour/maven/plugin-env/images/download.svg) ](https://bintray.com/vigour/maven/plugin-env/_latestVersion)
