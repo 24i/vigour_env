@@ -13,19 +13,23 @@ import io.vigour.nativewrapper.plugin.core.Plugin;
  */
 public class EnvPlugin extends Plugin {
 
-    private final Context context;
+    private Env value;
 
     public EnvPlugin(Context context) {
         super("env");
-        this.context = context;
+        value = new Env(context);
     }
 
     public String get() {
         try {
-            return JSON.std.asString(new Env(context));
+            return JSON.std.asString(value);
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException("couldn't get env info from device: " + e.getMessage());
         }
+    }
+
+    @Override public String getReadyMessage() {
+        return get();
     }
 }

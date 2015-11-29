@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 21
+    compileSdkVersion 23
     buildToolsVersion "22.0.1"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 23
         versionCode 1
         versionName "0.1"
     }
@@ -23,8 +23,7 @@ android {
 
 dependencies {
     compile 'com.fasterxml.jackson.jr:jackson-jr-objects:2.5.1'
-    compile 'io.vigour:plugin-core:0.4.1'
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'io.vigour:plugin-core:0.6.3'
 }
 
 task androidJavadocs(type: Javadoc) {
