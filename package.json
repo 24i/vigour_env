@@ -4,8 +4,10 @@
   "description": "Provides info about the device, platform and build",
   "main": "lib/index.js",
   "scripts": {
-    "start": "gaston",
-    "test": "gaston test"
+    "build": "cd example && npm run build",
+    "ios": "cd example && npm run ios",
+    "android": "cd example && npm run android",
+    "all": "cd example && npm run all"
   },
   "repository": {
     "type": "git",
@@ -33,7 +35,7 @@
   "dependencies": {
     "npmlog": "^1.2.1",
     "promise": "^7.0.4",
-    "vigour-wrapper": "^1.0.5"
+    "vigour-wrapper": "^2.1.1"
   },
   "vigour": {
     "plugin": {
