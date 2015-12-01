@@ -10,15 +10,52 @@ Coming soon: `npm i vigour-env`
 - `git pull skeleton develop`
 
 ## Usage
-See [tests](test)
+The plugin will be used to access device properties and will listen for changes of those. It will also used to catch device events like `pause`, `resume` and `button`.
 
-## Building native apps
-See [wrapper](http://github.com/vigour-io/vigour-native)
+Properties expected (-- those can change based on their availability on different platforms --): bundleId, country, language, region, timezone, model, os, osVersion, appVersion and network.
 
-### Android
-The build process will use the latest version of the plugins library, the latest version is [ ![Download](https://api.bintray.com/packages/vigour/maven/plugin-env/images/download.svg) ](https://bintray.com/vigour/maven/plugin-env/_latestVersion)
+If a property change on the device this can be communicated using the `change` event passing always the same object format as in `init` but with just the properties changed
 
-##3 events
-resume
-pause
-button
+The plugin expects to receive feedbacks about button press on: volume up (volup), volume down (voldown) and back (back)
+
+```js
+// plugin on init will expect to receive back the values for its own properties
+// passed as an object, eg: {network: 'wifi', model: 'iPhone 6s'}
+var env = require('vigour-env')
+
+// listening for the plugin to be ready
+env.ready.is(true, () {
+  // we have properties filled in here!
+})
+
+// listening for properties change
+env.on('change', (data, env) {
+  console.log('Properties changed!')
+})
+
+// listening ofr pause and resume events
+env.on('pause', () => {
+  console.log('application went in background')
+})
+env.on('resume', () => {
+  console.log('application is back in foreground')
+})
+
+// listening for button press events
+env.on('button', (data, event) => {
+  var type = data.button
+  swicth (button) {
+    case 'volup':
+      console.log('volume is going up!')
+      break
+    case 'voldown':
+      console.log('volume is going down')
+      break
+    case 'back':
+      console.log('going back')
+      break
+  }
+})
+```
+
+See for more use cases [tests](test)
