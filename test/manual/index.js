@@ -5,7 +5,7 @@ describe('Env plugin manual tests', function () {
   var envPlugin = require('../../lib')
 
   // after the init we receive back all the properties expected
-  it('should rfeceive back all the properties after the init', function (done) {
+  it('should receive back all the properties after the init', function (done) {
     envPlugin.ready.is(true, () => {
       expect(envPlugin.bundleId.val).to.not.be.false
       expect(envPlugin.country.val).to.not.be.false
@@ -39,10 +39,10 @@ describe('Env plugin manual tests', function () {
     var paused = false
     var resumed = false // eslint-disable-line
 
-    envPlugin.on('pause', () => {
+    envPlugin.once('pause', () => {
       paused = true
     })
-    envPlugin.on('resume', () => {
+    envPlugin.once('resume', () => {
       resumed = true
       expect(paused).to.be.true
       done()

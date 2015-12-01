@@ -1,13 +1,13 @@
 'use strict'
 
-var tests = require('../tests')
+var tests = require('./tests')
 
-describe('Facebook', function () {
+describe('Env', function () {
   describe('Mock Plugin Tests', function () {
-    tests(require('./mock'))
+    tests(require('./pluginMock'))
   })
 
   describe('Mock Bridge Tests', function () {
-    tests(require('./bridge'))
+    tests(require('./bridgeMock'))
   })
 })
