@@ -28,10 +28,11 @@ env.ready.is(true, () {
   // we have properties filled in here!
 })
 
-// listening for properties change
-env.on('change', (data, env) {
-  console.log('Properties changed!')
+// listening for properties changes
+env.network.on(() => {
+ // network is changed! 
 })
+
 
 // listening ofr pause and resume events
 env.on('pause', () => {
