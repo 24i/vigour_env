@@ -1,0 +1,60 @@
+{
+  "name": "vigour-env-tests",
+  "dependencies": {
+    "vigour-env": "../"
+  },
+  "gaston": {
+    "package": true
+  },
+  "vigour": {
+    "native": {
+      "debug": true,
+      "platforms": {
+        "ios": {
+          "productName": "Env Tests",
+          "organizationName": "Vigour",
+          "organizationIdentifier": "io.vigour.env",
+          "buildNumber": "1",
+          "appIndexPath": "build.html",
+          "NSAllowsArbitraryLoads": true,
+          "assets": {
+            "build.html": true,
+            "build.js": true,
+            "build.css": true,
+            "mocha.js": true,
+            "mocha.css": true
+          }
+        },
+        "android": {
+          "debug": true,
+          "run": true,
+          "productName": "Env Tests",
+          "applicationId": "io.vigour.env",
+          "appIndexPath": "build.html",
+          "splashDuration": "0",
+          "assets": {
+            "build.html": true,
+            "build.js": true,
+            "build.css": true,
+            "mocha.js": true,
+            "mocha.css": true
+          }
+        }
+      }
+    }
+  },
+  "standard": {
+    "globals": [
+      "alert",
+      "describe",
+      "it",
+      "expect",
+      "before",
+      "after",
+      "beforeEach",
+      "afterEach",
+      "sinon",
+      "FB"
+    ]
+  }
+}
