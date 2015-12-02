@@ -27,6 +27,9 @@ module.exports = function (inject) {
       expect(envPlugin.osVersion.val).to.not.be.false
       expect(envPlugin.appVersion.val).to.not.be.false
       expect(envPlugin.network.val).to.not.be.false
+      expect(envPlugin.platform.val).to.not.be.false
+      expect(envPlugin.device.val).to.not.be.false
+      expect(envPlugin.browser.val).to.not.be.false
       done()
     })
   })
