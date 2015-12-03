@@ -4,10 +4,13 @@
   "description": "Provides info about the device, platform and build",
   "main": "lib/index.js",
   "scripts": {
-    "build": "cd example && npm run build",
-    "ios": "cd example && npm run ios",
-    "android": "cd example && npm run android",
-    "all": "cd example && npm run all"
+    "test": "./node_modules/.bin/gaston test -r browser",
+    "ios-test": "cd test && ../node_modules/.bin/gaston bundle -t -s manual/index.js -o . -i && wrapper build --native.selectedPlatforms ios",
+    "ios": "npm run build && wrapper build --native.selectedPlatforms ios",
+    "android-test": "cd test && ../node_modules/.bin/gaston bundle -t -s manual/index.js -o . -i && wrapper build --native.selectedPlatforms android",
+    "android": "npm run build && wrapper build --native.selectedPlatforms android",
+    "all": "npm run build && wrapper build",
+    "prepush": "./node_modules/.bin/standard lib/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -33,8 +36,7 @@
     "node": ">=0.12"
   },
   "dependencies": {
-    "npmlog": "^1.2.1",
-    "promise": "^7.0.4",
+    "vigour-js": "~0.3.8",
     "vigour-ua": "~0.0.3",
     "vigour-wrapper": "~2.1.3"
   },
@@ -58,5 +60,10 @@
       "afterEach",
       "sinon"
     ]
+  },
+  "devDependencies": {
+    "gaston": "~0.28.10",
+    "husky": "^0.10.2",
+    "standard": "^5.4.1"
   }
 }
