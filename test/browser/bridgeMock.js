@@ -23,18 +23,24 @@ var mock = {
   },
   events: [
     {
-      eventType: 'update',
+      eventType: 'change',
       data: {
-        key: 'network',
-        val: false
+        network: false
       }
     },
     {
-      eventType: 'update',
+      eventType: 'change',
       data: {
-        key: 'network',
-        val: false
+        network: '3G'
       }
+    },
+    {
+      eventType: 'pause',
+      data: true
+    },
+    {
+      eventType: 'resume',
+      data: true
     }
   ]
 }
