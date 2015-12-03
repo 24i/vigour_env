@@ -6,6 +6,7 @@ describe('Env plugin manual tests', function () {
 
   // after the init we receive back all the properties expected
   it('should receive back all the properties after the init', function (done) {
+    envPlugin.val = true
     envPlugin.ready.is(true, () => {
       expect(envPlugin.bundleId.val).to.not.be.false
       expect(envPlugin.country.val).to.not.be.false
