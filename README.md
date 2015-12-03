@@ -1,3 +1,7 @@
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+[![npm version](https://badge.fury.io/js/vigour-status-bar.svg)](https://badge.fury.io/js/vigour-env)
+[![Build Status](https://travis-ci.org/vigour-io/status-bar.svg?branch=develop)](https://travis-ci.org/vigour-io/env)
+
 # env
 Provides info about the device, platform and build
 
