@@ -28,6 +28,26 @@ var mock = {
       data: {
         network: false
       }
+    },
+    volUpPressed: {
+      eventType: 'button',
+      data: 'volUp'
+    },
+    volDownPressed: {
+      eventType: 'button',
+      data: 'volDown'
+    },
+    backPressed: {
+      eventType: 'button',
+      data: 'back'
+    },
+    pause: {
+      eventType: 'pause',
+      data: true
+    },
+    resume: {
+      eventType: 'resume',
+      data: true
     }
   }
 }
