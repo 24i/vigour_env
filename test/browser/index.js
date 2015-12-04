@@ -8,6 +8,6 @@ describe('Env', function () {
   })
 
   describe('Mock Bridge Tests', function () {
-    tests(require('./bridge'), 'bridge')
+    tests(require('./mockNativeMethods'), 'native')
   })
 })

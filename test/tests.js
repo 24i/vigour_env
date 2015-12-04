@@ -13,7 +13,7 @@ module.exports = function (inject, type) {
     })
   }
 
-  if (type === 'bridge') {
+  if (type === 'native') {
     bridge = window.vigour.native.bridge
   }
 
