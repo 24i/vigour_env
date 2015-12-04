@@ -4,6 +4,8 @@ exports.platform = {
   on: {
     init: {
       env () {
+        console.log('mock init!')
+
         setTimeout(() => {
           this.parent.set({
             ready: true,
