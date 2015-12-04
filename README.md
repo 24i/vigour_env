@@ -38,28 +38,17 @@ env.network.on(() => {
 })
 
 
-// listening ofr pause and resume events
-env.on('pause', () => {
-  console.log('application went in background')
-})
-env.on('resume', () => {
-  console.log('application is back in foreground')
+// listening of pause and resume events
+env.paused.on(() => {
+  if (env.paused.val) {
+    console.log('we went in background!')
+  } else {
+    console.log('we resumed!')
+  }
 })
 
-// listening for button press events
-env.on('button', (data, event) => {
-  var type = data.button
-  swicth (button) {
-    case 'volup':
-      console.log('volume is going up!')
-      break
-    case 'voldown':
-      console.log('volume is going down')
-      break
-    case 'back':
-      console.log('going back')
-      break
-  }
+env.button.on((data) => {
+  console.log('Button pressed', data)
 })
 ```
 
