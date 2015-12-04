@@ -1,6 +1,6 @@
 'use strict'
 
-exports.platform = {
+exports._platform = {
   on: {
     init: {
       env () {

@@ -44,7 +44,7 @@ module.exports = function (inject, type) {
       done()
     })
     if (type === 'platform') {
-      envPlugin.platform.emit('change', {network: false})
+      envPlugin._platform.emit('change', {network: false})
     } else if (type.label === 'bridge') {
       let event = type.events.changeNetworkFalse
       bridge.receive(event.eventType, event.data, 'env')
@@ -63,9 +63,9 @@ module.exports = function (inject, type) {
       }
     })
     if (type === 'platform') {
-      envPlugin.platform.emit('pause')
+      envPlugin._platform.emit('pause')
       setTimeout(() => {
-        envPlugin.platform.emit('resume')
+        envPlugin._platform.emit('resume')
       })
     } else if (bridge) {
       let event = type.events.resume
@@ -95,11 +95,11 @@ module.exports = function (inject, type) {
       }
     })
     if (type === 'platform') {
-      envPlugin.platform.emit('button', 'volUp')
+      envPlugin._platform.emit('button', 'volUp')
       setTimeout(() => {
-        envPlugin.platform.emit('button', 'volDown')
+        envPlugin._platform.emit('button', 'volDown')
         setTimeout(() => {
-          envPlugin.platform.emit('button', 'back')
+          envPlugin._platform.emit('button', 'back')
         })
       })
     } else if (bridge) {
