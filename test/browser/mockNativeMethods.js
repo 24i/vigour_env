@@ -2,6 +2,7 @@
 var bridge = require('vigour-wrapper/lib/bridge')
 
 var mock = {
+  label: 'bridge',
   methods: {
     init (opts, cb) {
       // init the plugin and get the current orientation, we will use portrait as start
@@ -20,6 +21,14 @@ var mock = {
         })
       })
     }
+  },
+  events: {
+    changeNetworkFalse: {
+      eventType: 'change',
+      data: {
+        network: false
+      }
+    }
   }
 }
 
@@ -29,4 +38,4 @@ bridge.define({
   }
 })
 
-exports.inject = require('../../lib/platform/native')
+module.exports = mock

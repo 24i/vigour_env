@@ -8,6 +8,8 @@ describe('Env', function () {
   })
 
   describe('Mock Native Tests', function () {
-    tests(require('./mockNativeMethods'), 'native')
+    var mockBridge = require('./mockNativeMethods')
+    var nativePlatform = require('../../lib/platform/native')
+    tests(nativePlatform, mockBridge)
   })
 })

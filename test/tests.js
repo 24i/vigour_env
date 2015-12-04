@@ -13,7 +13,7 @@ module.exports = function (inject, type) {
     })
   }
 
-  if (type === 'native') {
+  if (type.label === 'bridge') {
     bridge = window.vigour.native.bridge
   }
 
@@ -45,8 +45,9 @@ module.exports = function (inject, type) {
     })
     if (type === 'platform') {
       envPlugin.platform.emit('change', {network: false})
-    } else if (bridge) {
-      bridge.receive('change', {network: false}, 'env')
+    } else if (type.label === 'bridge') {
+      let event = type.events.changeNetworkFalse
+      bridge.receive(event.eventType, event.data, 'env')
     } else {
       alert('try to change your network by switching it off, we expect network to be setted to false')
     }
