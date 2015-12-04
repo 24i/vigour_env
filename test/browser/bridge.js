@@ -20,29 +20,7 @@ var mock = {
         })
       })
     }
-  },
-  events: [
-    {
-      eventType: 'change',
-      data: {
-        network: false
-      }
-    },
-    {
-      eventType: 'change',
-      data: {
-        network: '3G'
-      }
-    },
-    {
-      eventType: 'pause',
-      data: true
-    },
-    {
-      eventType: 'resume',
-      data: true
-    }
-  ]
+  }
 }
 
 bridge.define({
