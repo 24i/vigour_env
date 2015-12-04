@@ -68,9 +68,11 @@ module.exports = function (inject, type) {
         envPlugin.platform.emit('resume')
       })
     } else if (bridge) {
-      bridge.receive('pause', true, 'env')
+      let event = type.events.resume
+      bridge.receive(event.eventType, event.data, 'env')
       setTimeout(() => {
-        bridge.receive('resume', true, 'env')
+        event = type.events.pause
+        bridge.receive(event.eventType, event.data, 'env')
       })
     } else {
       alert('try to put the application in background and then to the foreground again')
@@ -80,28 +82,35 @@ module.exports = function (inject, type) {
   // we should be able to listen for button events, we can receive them like
   // eg: {button: 'volup'}
   it('should be able to listen for volup, voldown and back button press', function (done) {
-    var buttons = []
+    var buttons = {
+      volUp: 0,
+      volDown: 0,
+      back: 0
+    }
     envPlugin.button.on((data) => {
-      var button = data
-      if (buttons.indexOf(button) < 0) {
-        buttons.push(button)
+      buttons[data] = buttons[data] + 1
+      if (buttons.volUp && buttons.volDown && buttons.back) {
+        expect(buttons.volUp + buttons.volDown + buttons.back).to.equal(3)
+        done()
       }
-      if (buttons.length === 3) done()
     })
     if (type === 'platform') {
-      envPlugin.platform.emit('button', 'volup')
+      envPlugin.platform.emit('button', 'volUp')
       setTimeout(() => {
-        envPlugin.platform.emit('button', 'voldown')
+        envPlugin.platform.emit('button', 'volDown')
         setTimeout(() => {
           envPlugin.platform.emit('button', 'back')
         })
       })
     } else if (bridge) {
-      bridge.receive('button', 'volup', 'env')
+      let event = type.events.volUpPressed
+      bridge.receive(event.eventType, event.data, 'env')
       setTimeout(() => {
-        bridge.receive('button', 'voldown', 'env')
+        event = type.events.volDownPressed
+        bridge.receive(event.eventType, event.data, 'env')
         setTimeout(() => {
-          bridge.receive('button', 'back', 'env')
+          event = type.events.backPressed
+          bridge.receive(event.eventType, event.data, 'env')
         })
       })
     } else {
