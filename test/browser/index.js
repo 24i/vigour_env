@@ -3,11 +3,11 @@
 var tests = require('../tests')
 
 describe('Env', function () {
-  describe('Mock Plugin Tests', function () {
-    tests(require('./platform'), 'platform')
+  describe('Mock Platform Tests', function () {
+    tests(require('./mockPlatform'), 'platform')
   })
 
-  describe('Mock Bridge Tests', function () {
+  describe('Mock Native Tests', function () {
     tests(require('./mockNativeMethods'), 'native')
   })
 })
