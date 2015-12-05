@@ -1,9 +1,11 @@
 'use strict'
 
-exports.platform = {
+exports._platform = {
   on: {
     init: {
       env () {
+        console.log('mock init!')
+
         setTimeout(() => {
           this.parent.set({
             ready: true,
@@ -20,6 +22,18 @@ exports.platform = {
           })
         })
       }
+    },
+    change (data) {
+      this.parent.set(data)
+    },
+    pause () {
+      this.parent.paused.val = true
+    },
+    resume () {
+      this.parent.paused.val = false
+    },
+    button (type) {
+      this.parent.button.val = type
     }
   }
 }

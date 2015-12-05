@@ -1,7 +1,9 @@
 'use strict'
+
 var bridge = require('vigour-wrapper/lib/bridge')
 
-var mock = {
+bridge.label = 'mockBridge'
+bridge.mock = {
   methods: {
     init (opts, cb) {
       // init the plugin and get the current orientation, we will use portrait as start
@@ -21,34 +23,40 @@ var mock = {
       })
     }
   },
-  events: [
-    {
+  events: {
+    changeNetworkFalse: {
       eventType: 'change',
       data: {
         network: false
       }
     },
-    {
-      eventType: 'change',
-      data: {
-        network: '3G'
-      }
+    volUpPressed: {
+      eventType: 'button',
+      data: 'volUp'
     },
-    {
+    volDownPressed: {
+      eventType: 'button',
+      data: 'volDown'
+    },
+    backPressed: {
+      eventType: 'button',
+      data: 'back'
+    },
+    pause: {
       eventType: 'pause',
       data: true
     },
-    {
+    resume: {
       eventType: 'resume',
       data: true
     }
-  ]
+  }
 }
 
 bridge.define({
   send: function (pluginId, fnName, opts, cb) {
-    return mock.methods[fnName](opts, cb)
+    return bridge.mock.methods[fnName](opts, cb)
   }
 })
 
-exports.inject = require('../../lib/platform/native')
+module.exports = bridge

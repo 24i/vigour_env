@@ -28,6 +28,7 @@ exports.start = function () {
 
   function writeHtml (envCode) {
     var newHtml = _html.replace('<head>', "<head><script type='text/javascript'>" + envCode + '</script>', 'i')
+      .replace('{{title}}', self.productName ? self.productName : 'title')
     return fs.writeFileAsync(htmlPath, newHtml, 'utf8')
   }
 }
