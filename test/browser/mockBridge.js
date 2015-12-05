@@ -1,8 +1,9 @@
 'use strict'
+
 var bridge = require('vigour-wrapper/lib/bridge')
 
-var mock = {
-  label: 'bridge',
+bridge.label = 'mockBridge'
+bridge.mock = {
   methods: {
     init (opts, cb) {
       // init the plugin and get the current orientation, we will use portrait as start
@@ -54,8 +55,8 @@ var mock = {
 
 bridge.define({
   send: function (pluginId, fnName, opts, cb) {
-    return mock.methods[fnName](opts, cb)
+    return bridge.mock.methods[fnName](opts, cb)
   }
 })
 
-module.exports = mock
+module.exports = bridge

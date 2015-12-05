@@ -1,6 +1,6 @@
 {
   "name": "vigour-env",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Provides info about the device, platform and build",
   "main": "lib/index.js",
   "scripts": {
@@ -39,7 +39,7 @@
   "dependencies": {
     "vigour-js": "~0.3.8",
     "vigour-ua": "~0.0.3",
-    "vigour-wrapper": "~2.1.3"
+    "vigour-wrapper": "~2.2.0"
   },
   "vigour": {
     "plugin": {
