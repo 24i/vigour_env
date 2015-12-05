@@ -1,8 +1,11 @@
 'use strict'
 
 module.exports = function (inject, type) {
-  var envPlugin, bridge
-  var mockbridge = type && type.label
+  var envPlugin
+
+  var bridge = type && type.label === 'mockBridge'
+    ? type
+    : false
 
   it('require env', function () {
     envPlugin = require('../lib')
@@ -12,10 +15,6 @@ module.exports = function (inject, type) {
     it('create instance with mock properties', function () {
       envPlugin = new envPlugin.Constructor(inject)
     })
-  }
-
-  if (mockbridge) {
-    bridge = window.vigour.native.bridge
   }
 
   // after the init we receive back all the properties expected
@@ -46,8 +45,8 @@ module.exports = function (inject, type) {
     })
     if (type === 'platform') {
       envPlugin._platform.emit('change', {network: false})
-    } else if (mockbridge) {
-      let event = type.events.changeNetworkFalse
+    } else if (bridge) {
+      let event = bridge.mock.events.changeNetworkFalse
       bridge.receive(event.eventType, event.data, 'env')
     } else {
       alert('try to change your network by switching it off, we expect network to be setted to false')
@@ -68,11 +67,11 @@ module.exports = function (inject, type) {
       setTimeout(() => {
         envPlugin._platform.emit('resume')
       })
-    } else if (mockbridge) {
-      let event = type.events.resume
+    } else if (bridge) {
+      let event = bridge.mock.events.resume
       bridge.receive(event.eventType, event.data, 'env')
       setTimeout(() => {
-        event = type.events.pause
+        event = bridge.mock.events.pause
         bridge.receive(event.eventType, event.data, 'env')
       })
     } else {
@@ -103,14 +102,14 @@ module.exports = function (inject, type) {
           envPlugin._platform.emit('button', 'back')
         })
       })
-    } else if (mockbridge) {
-      let event = type.events.volUpPressed
+    } else if (bridge) {
+      let event = bridge.mock.events.volUpPressed
       bridge.receive(event.eventType, event.data, 'env')
       setTimeout(() => {
-        event = type.events.volDownPressed
+        event = bridge.mock.events.volDownPressed
         bridge.receive(event.eventType, event.data, 'env')
         setTimeout(() => {
-          event = type.events.backPressed
+          event = bridge.mock.events.backPressed
           bridge.receive(event.eventType, event.data, 'env')
         })
       })
