@@ -2,6 +2,7 @@
 
 module.exports = function (inject, type) {
   var envPlugin, bridge
+  var mockbridge = type && type.label
 
   it('require env', function () {
     envPlugin = require('../lib')
@@ -13,7 +14,7 @@ module.exports = function (inject, type) {
     })
   }
 
-  if (type.label === 'bridge') {
+  if (mockbridge) {
     bridge = window.vigour.native.bridge
   }
 
@@ -45,7 +46,7 @@ module.exports = function (inject, type) {
     })
     if (type === 'platform') {
       envPlugin._platform.emit('change', {network: false})
-    } else if (type.label === 'bridge') {
+    } else if (mockbridge) {
       let event = type.events.changeNetworkFalse
       bridge.receive(event.eventType, event.data, 'env')
     } else {
@@ -67,7 +68,7 @@ module.exports = function (inject, type) {
       setTimeout(() => {
         envPlugin._platform.emit('resume')
       })
-    } else if (bridge) {
+    } else if (mockbridge) {
       let event = type.events.resume
       bridge.receive(event.eventType, event.data, 'env')
       setTimeout(() => {
@@ -102,7 +103,7 @@ module.exports = function (inject, type) {
           envPlugin._platform.emit('button', 'back')
         })
       })
-    } else if (bridge) {
+    } else if (mockbridge) {
       let event = type.events.volUpPressed
       bridge.receive(event.eventType, event.data, 'env')
       setTimeout(() => {
