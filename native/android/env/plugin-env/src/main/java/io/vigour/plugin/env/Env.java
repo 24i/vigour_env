@@ -8,13 +8,14 @@ import android.os.Build;
 import android.telephony.TelephonyManager;
 
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by michielvanliempt on 29/09/15.
  */
 public class Env {
     private String bundleId;
-    private String version;
+    private String appVersion;
     private int versionCode;
 
     private String os;
@@ -23,7 +24,9 @@ public class Env {
 
     private final String language;
     private final String country;
-    private final String languageRegion;
+    private final String region;
+    private final String timezone;
+    private String network;
 
     public Env(Context context) {
         os = "Android";
@@ -31,16 +34,21 @@ public class Env {
         ApplicationInfo applicationInfo = context.getApplicationInfo();
         bundleId = applicationInfo.packageName;
         model = Build.MODEL;
-        languageRegion = Locale.getDefault().getCountry();
-        language = Locale.getDefault().getLanguage();
+        final Locale locale = Locale.getDefault();
+        region = locale.getCountry();
+        language = locale.getLanguage();
+        timezone = TimeZone.getDefault().getID();
         country = getUserCountry(context);
+        network = "whatever, you nosey bastard";
         String name = context.getPackageName();
         try {
             PackageInfo packageInfo = context.getPackageManager().getPackageInfo(name, 0);
-            version = packageInfo.versionName;
+            appVersion = packageInfo.versionName;
             versionCode = packageInfo.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
+            appVersion = "?";
+            versionCode = 0;
         }
     }
 
@@ -78,8 +86,8 @@ public class Env {
         return language;
     }
 
-    public String getLanguageRegion() {
-        return languageRegion;
+    public String getRegion() {
+        return region;
     }
 
     public String getModel() {
@@ -94,7 +102,19 @@ public class Env {
         return osVersion;
     }
 
-    public String getVersion() {
-        return version;
+    public String getAppVersion() {
+        return appVersion;
+    }
+
+    public String getNetwork() {
+        return network;
+    }
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setNetwork(String network) {
+        this.network = network;
     }
 }
