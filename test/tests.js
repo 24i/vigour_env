@@ -8,19 +8,22 @@ module.exports = function (inject, type) {
     : false
 
   it('require env', function () {
+    console.log('------- require dat envPlugin')
     envPlugin = require('../lib')
   })
 
   if (inject) {
     it('create instance with mock properties', function () {
+      console.log('------- change dat other envPlugin')
       envPlugin = new envPlugin.Constructor(inject)
     })
   }
 
   // after the init we receive back all the properties expected
   it('should receive back all the properties after the init', function (done) {
+    console.log('---------- init dat')
     envPlugin.val = true
-    envPlugin.ready.is(true, () => {
+    envPlugin.bundleId.once(function () {
       expect(envPlugin.bundleId.val).to.not.be.false
       expect(envPlugin.country.val).to.not.be.false
       expect(envPlugin.language.val).to.not.be.false
