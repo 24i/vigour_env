@@ -23,7 +23,7 @@ exports.start = function () {
   }
 
   function addEnv () {
-    return 'window.env={target:' + self.platform + '}'
+    return 'window.env={target:\'' + self.platform + '\'}'
   }
 
   function writeHtml (envCode) {
