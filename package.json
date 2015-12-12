@@ -37,6 +37,7 @@
     "node": ">=0.12"
   },
   "dependencies": {
+    "vigour-fs-promised": "^2.0.1",
     "vigour-ua": "~0.0.3",
     "vigour-wrapper": "~2.2.1"
   },
