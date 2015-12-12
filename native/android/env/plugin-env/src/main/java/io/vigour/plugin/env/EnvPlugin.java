@@ -55,7 +55,7 @@ public class EnvPlugin extends Plugin {
             case ConnectivityManager.TYPE_MOBILE_DUN:
                 return "mobile";
         }
-        return "unknown";
+        return "false";
     }
 
 
