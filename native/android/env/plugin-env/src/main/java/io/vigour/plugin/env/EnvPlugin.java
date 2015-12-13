@@ -44,18 +44,24 @@ public class EnvPlugin extends Plugin {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         final NetworkInfo activeNetworkInfo = cm.getActiveNetworkInfo();
         if (activeNetworkInfo == null) {
-            return "no connection";
+            return "none";
         }
         switch (activeNetworkInfo.getType()) {
             case ConnectivityManager.TYPE_ETHERNET:
                 return "ethernet";
             case ConnectivityManager.TYPE_WIFI:
+            case ConnectivityManager.TYPE_WIMAX:
                 return "wifi";
             case ConnectivityManager.TYPE_MOBILE:
+            case ConnectivityManager.TYPE_MOBILE_HIPRI:
+            case ConnectivityManager.TYPE_MOBILE_MMS:
+            case ConnectivityManager.TYPE_MOBILE_SUPL:
             case ConnectivityManager.TYPE_MOBILE_DUN:
                 return "mobile";
+            case ConnectivityManager.TYPE_BLUETOOTH:
+                return "bluetooth";
         }
-        return "false";
+        return "none";
     }
 
 
