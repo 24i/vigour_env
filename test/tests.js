@@ -33,7 +33,7 @@ module.exports = function (inject, type) {
       expect(envPlugin.os.val).to.not.be.false
       expect(envPlugin.osVersion.val).to.not.be.false
       expect(envPlugin.appVersion.val).to.not.be.false
-      expect(envPlugin.network.val).to.not.be.false
+      expect(envPlugin.network.val).to.not.equal('none')
       done()
     })
   })
@@ -43,11 +43,11 @@ module.exports = function (inject, type) {
     var previous = envPlugin.network.val
     envPlugin.network.on(() => {
       expect(envPlugin.network.val).to.not.equal(previous)
-      expect(envPlugin.network.val).to.be.false
+      expect(envPlugin.network.val).to.euqal('none')
       done()
     })
     if (type === 'platform') {
-      envPlugin._platform.emit('change', {network: false})
+      envPlugin._platform.emit('change', {network: 'none'})
     } else if (bridge) {
       let event = bridge.mock.events.changeNetworkFalse
       bridge.receive(event.eventType, event.data, 'env')
