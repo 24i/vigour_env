@@ -41,21 +41,18 @@ module.exports = function (inject, type) {
   // we should be able to listen for properties changes
   it('should listen for property changes', function (done) {
     var previous = envPlugin.network.val
-    // envPlugin.network.on(() => {
-    //   expect(envPlugin.network.val).to.not.equal(previous)
-    //   expect(envPlugin.network.val).to.euqal('none')
-    //   done()
-    // })
-    setTimeout(function () {
+    envPlugin.network.on(() => {
       expect(envPlugin.network.val).to.not.equal(previous)
+      expect(envPlugin.network.val).to.euqal('none')
       done()
-    }, 5000)
+    })
     if (type === 'platform') {
       envPlugin._platform.emit('change', {network: 'none'})
     } else if (bridge) {
       let event = bridge.mock.events.changeNetworkFalse
       bridge.receive(event.eventType, event.data, 'env')
     } else {
+      this.timeout(6000)
       alert('try to change your network by switching it off, we expect network to be setted to false')
     }
   })
