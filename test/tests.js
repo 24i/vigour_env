@@ -52,7 +52,6 @@ module.exports = function (inject, type) {
       let event = bridge.mock.events.changeNetworkFalse
       bridge.receive(event.eventType, event.data, 'env')
     } else {
-      this.timeout(6000)
       alert('try to change your network by switching it off, we expect network to be setted to false')
     }
   })
