@@ -28,10 +28,10 @@ module.exports = function (inject, type) {
   })
 
   it('should receive bundleId property after the init', function (done) {
-    envPlugin.bundleId.once(function () {
+    setTimeout(function () {
       expect(envPlugin.bundleId.val).to.not.be.false
       done()
-    })
+    }, 300)
   })
 
   it('should receive country property after the init', function (done) {
