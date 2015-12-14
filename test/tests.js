@@ -41,11 +41,16 @@ module.exports = function (inject, type) {
   // we should be able to listen for properties changes
   it('should listen for property changes', function (done) {
     var previous = envPlugin.network.val
+    alert('network value: ' + previous)
     envPlugin.network.on(() => {
-      expect(envPlugin.network.val).to.not.equal(previous)
-      expect(envPlugin.network.val).to.euqal('none')
-      done()
+      alert('GOT IT')
+      // expect(envPlugin.network.val).to.not.equal(previous)
+      // expect(envPlugin.network.val).to.euqal('none')
+      // done()
     })
+    setTimeout(function () {
+      alert('brrr: ' + envPlugin.network.val)
+    }, 10000)
     if (type === 'platform') {
       envPlugin._platform.emit('change', {network: 'none'})
     } else if (bridge) {
