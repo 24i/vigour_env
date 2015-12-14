@@ -23,20 +23,15 @@ module.exports = function (inject, type) {
   it('should set plugin as ready after init', function (done) {
     envPlugin.val = true
     envPlugin.ready.is(true, function () {
-      alert('init')
       done()
     })
   })
 
   it('should receive bundleId property after the init', function (done) {
-    setTimeout(function () {
-      alert('bundle: ' + envPlugin.bundleId.val)
-      alert('web: ' + envPlugin.isWeb.val)
-      alert('native: ' + envPlugin.isNative.val)
-      alert('mock: ' + envPlugin.isMock.val)
+    envPlugin.bundleId.once(function () {
       expect(envPlugin.bundleId.val).to.not.be.false
       done()
-    }, 300)
+    })
   })
 
   it('should receive country property after the init', function (done) {
