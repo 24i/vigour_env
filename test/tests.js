@@ -101,10 +101,8 @@ module.exports = function (inject, type) {
   it('should listen for pause and resume events', function (done) {
     envPlugin.paused.on((data) => {
       if (data === false) {
-        alert('resume false')
         return
       } else if (data === true) {
-        alert('resume true')
         done()
       }
     })
