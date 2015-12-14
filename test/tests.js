@@ -167,19 +167,15 @@ module.exports = function (inject, type) {
   // we should be able to listen for properties changes
   it('should listen for property changes', function (done) {
     var previous = envPlugin.network.val
-    alert('network value: ' + previous)
     envPlugin.network.on(() => {
-      alert('GOT IT')
-      // expect(envPlugin.network.val).to.not.equal(previous)
-      // expect(envPlugin.network.val).to.euqal('none')
-      // done()
+      expect(envPlugin.network.val).to.not.equal(previous)
+      expect(envPlugin.network.val).to.equal('none')
+      done()
     })
-    setTimeout(function () {
-      alert('brrr: ' + envPlugin.network.value)
-    }, 10000)
     if (type === 'platform') {
       envPlugin._platform.emit('change', {network: 'none'})
     } else if (bridge) {
+      console.log('----- RECEIVE')
       let event = bridge.mock.events.changeNetworkFalse
       bridge.receive(event.eventType, event.data, 'env')
     } else {

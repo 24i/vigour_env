@@ -27,7 +27,7 @@ bridge.mock = {
     changeNetworkFalse: {
       eventType: 'change',
       data: {
-        network: false
+        network: 'none'
       }
     },
     volUpPressed: {
