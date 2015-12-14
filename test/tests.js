@@ -20,53 +20,96 @@ module.exports = function (inject, type) {
   }
 
   // after the init we receive back all the properties expected
-  it('should receive back all the properties after the init', function (done) {
-    console.log('---------- init dat')
+  it('should set plugin as ready after init', function (done) {
     envPlugin.val = true
-    envPlugin.bundleId.once(function () {
-      expect(envPlugin.bundleId.val).to.not.be.false
-      expect(envPlugin.country.val).to.not.be.false
-      expect(envPlugin.language.val).to.not.be.false
-      expect(envPlugin.region.val).to.not.be.false
-      expect(envPlugin.timezone.val).to.not.be.false
-      expect(envPlugin.model.val).to.not.be.false
-      expect(envPlugin.os.val).to.not.be.false
-      expect(envPlugin.osVersion.val).to.not.be.false
-      expect(envPlugin.appVersion.val).to.not.be.false
-      expect(envPlugin.network.val).to.not.equal('none')
+    envPlugin.ready.is(true, function () {
+      alert('init')
       done()
     })
   })
 
-  // we should be able to listen for properties changes
-  it('should listen for property changes', function (done) {
-    var previous = envPlugin.network.val
-    alert('network value: ' + previous)
-    envPlugin.network.on(() => {
-      alert('GOT IT')
-      // expect(envPlugin.network.val).to.not.equal(previous)
-      // expect(envPlugin.network.val).to.euqal('none')
-      // done()
-    })
+  it('should receive bundleId property after the init', function (done) {
     setTimeout(function () {
-      alert('brrr: ' + envPlugin.network.val)
-    }, 10000)
-    if (type === 'platform') {
-      envPlugin._platform.emit('change', {network: 'none'})
-    } else if (bridge) {
-      let event = bridge.mock.events.changeNetworkFalse
-      bridge.receive(event.eventType, event.data, 'env')
-    } else {
-      alert('try to change your network by switching it off, we expect network to be setted to false')
-    }
+      alert('bundle: ' + envPlugin.bundleId.val)
+      alert('web: ' + envPlugin.isWeb.val)
+      alert('native: ' + envPlugin.isNative.val)
+      alert('mock: ' + envPlugin.isMock.val)
+      expect(envPlugin.bundleId.val).to.not.be.false
+      done()
+    }, 300)
+  })
+
+  it('should receive country property after the init', function (done) {
+    setTimeout(function () {
+      expect(envPlugin.country.val).to.not.be.false
+      done()
+    }, 300)
+  })
+
+  it('should receive language property after the init', function (done) {
+    setTimeout(function () {
+      expect(envPlugin.language.val).to.not.be.false
+      done()
+    }, 300)
+  })
+
+  it('should receive region property after the init', function (done) {
+    setTimeout(function () {
+      expect(envPlugin.region.val).to.not.be.false
+      done()
+    }, 300)
+  })
+
+  it('should receive timezone property after the init', function (done) {
+    setTimeout(function () {
+      expect(envPlugin.timezone.val).to.not.be.false
+      done()
+    }, 300)
+  })
+
+  it('should receive model property after the init', function (done) {
+    setTimeout(function () {
+      expect(envPlugin.model.val).to.not.be.false
+      done()
+    }, 300)
+  })
+
+  it('should receive os property after the init', function (done) {
+    setTimeout(function () {
+      expect(envPlugin.os.val).to.not.be.false
+      done()
+    }, 300)
+  })
+
+  it('should receive osVersion property after the init', function (done) {
+    setTimeout(function () {
+      expect(envPlugin.osVersion.val).to.not.be.false
+      done()
+    }, 300)
+  })
+
+  it('should receive appVersion property after the init', function (done) {
+    setTimeout(function () {
+      expect(envPlugin.appVersion.val).to.not.be.false
+      done()
+    }, 300)
+  })
+
+  it('should receive network property after the init', function (done) {
+    setTimeout(function () {
+      expect(envPlugin.network.val).to.not.equal('none')
+      done()
+    }, 300)
   })
 
   // we should be able to listen for pause and resume events
   it('should listen for pause and resume events', function (done) {
     envPlugin.paused.on((data) => {
       if (data === false) {
+        alert('resume false')
         return
       } else if (data === true) {
+        alert('resume true')
         done()
       }
     })
@@ -123,6 +166,29 @@ module.exports = function (inject, type) {
       })
     } else {
       alert('close this and press the volume up button, then volume down, then back')
+    }
+  })
+
+  // we should be able to listen for properties changes
+  it('should listen for property changes', function (done) {
+    var previous = envPlugin.network.val
+    alert('network value: ' + previous)
+    envPlugin.network.on(() => {
+      alert('GOT IT')
+      // expect(envPlugin.network.val).to.not.equal(previous)
+      // expect(envPlugin.network.val).to.euqal('none')
+      // done()
+    })
+    setTimeout(function () {
+      alert('brrr: ' + envPlugin.network.value)
+    }, 10000)
+    if (type === 'platform') {
+      envPlugin._platform.emit('change', {network: 'none'})
+    } else if (bridge) {
+      let event = bridge.mock.events.changeNetworkFalse
+      bridge.receive(event.eventType, event.data, 'env')
+    } else {
+      alert('try to change your network by switching it off, we expect network to be setted to false')
     }
   })
 }
