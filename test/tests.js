@@ -125,16 +125,15 @@ module.exports = function (inject, type) {
 
   // we should be able to listen for button events, we can receive them like
   // eg: {button: 'volup'}
-  it('should be able to listen for volup, voldown and back button press', function (done) {
+  it('should be able to listen for volup and voldown button press', function (done) {
     var buttons = {
       volUp: 0,
-      volDown: 0,
-      back: 0
+      volDown: 0
     }
     envPlugin.button.on((data) => {
       buttons[data] = buttons[data] + 1
-      if (buttons.volUp && buttons.volDown && buttons.back) {
-        expect(buttons.volUp + buttons.volDown + buttons.back).to.equal(3)
+      if (buttons.volUp && buttons.volDown) {
+        expect(buttons.volUp + buttons.volDown).to.equal(2)
         done()
       }
     })
@@ -142,9 +141,6 @@ module.exports = function (inject, type) {
       envPlugin._platform.emit('button', 'volUp')
       setTimeout(() => {
         envPlugin._platform.emit('button', 'volDown')
-        setTimeout(() => {
-          envPlugin._platform.emit('button', 'back')
-        })
       })
     } else if (bridge) {
       let event = bridge.mock.events.volUpPressed
@@ -152,13 +148,9 @@ module.exports = function (inject, type) {
       setTimeout(() => {
         event = bridge.mock.events.volDownPressed
         bridge.receive(event.eventType, event.data, 'env')
-        setTimeout(() => {
-          event = bridge.mock.events.backPressed
-          bridge.receive(event.eventType, event.data, 'env')
-        })
       })
     } else {
-      alert('close this and press the volume up button, then volume down, then back')
+      alert('close this and press the volume up button, then volume down')
     }
   })
 
