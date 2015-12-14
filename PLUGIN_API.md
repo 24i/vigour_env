@@ -1,5 +1,9 @@
 ### Plugin API
 
+**Properties formats**
+* `timezone` must be in the format YYYY-MM-DDThh:mm:ssTZD (eg 1997-07-16T19:20:30+01:00)
+* `network` must be one of those strings: `none`, `2g`, `3g`, `4g` or `wifi`
+
 **Emits**
 * `init`, on init the plugin expects the list of properties back ad JSON data. For network, if not connected, we decided to send `none`
 
