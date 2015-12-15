@@ -9,16 +9,16 @@ bridge.mock = {
       // init the plugin and get the current orientation, we will use portrait as start
       setTimeout(function () {
         cb && cb(null, {
-          bundleId: 'buzz',
-          network: 'wifi',
-          country: 'nl',
-          language: 'en',
-          region: 'GB',
-          timezone: 'GMT+09:30',
-          model: 'iPhone 6s',
-          os: 'android',
-          osVersion: 19,
-          appVersion: 1
+          bundleId: 'mock',
+          network: 'mock',
+          country: 'mock',
+          language: 'mock',
+          region: 'mock',
+          timezone: '2015-12-15T12:00:30+0100',
+          model: 'mock',
+          os: 'mock',
+          osVersion: 'mock',
+          appVersion: 'mock'
         })
       })
     }

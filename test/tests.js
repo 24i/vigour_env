@@ -58,7 +58,7 @@ module.exports = function (inject, type) {
 
   it('should receive timezone property after the init', function (done) {
     setTimeout(function () {
-      expect(moment(envPlugin.timezone.val, 'YYYY-MM-DDThh:mm:ssZ', true).isValid()).to.be.true
+      expect(moment(envPlugin.timezone.val, 'YYYY-MM-DDTHH:mm:ssZ', true).isValid()).to.be.true
       expect(envPlugin.timezone.val).to.not.be.false
       done()
     }, 300)
