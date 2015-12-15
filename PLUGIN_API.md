@@ -1,7 +1,7 @@
 ### Plugin API
 
 **Properties formats**
-* `timezone` must be in the format YYYY-MM-DDThh:mm:ssTZD (eg 1997-07-16T19:20:30+01:00)
+* `timezone` must be in the format YYYY-MM-DDThh:mm:ssZ (eg 1997-07-16T19:20:30+0100)
 * `network` must be one of those strings: `none`, `2g`, `3g`, `4g` or `wifi`
 
 **Emits**
