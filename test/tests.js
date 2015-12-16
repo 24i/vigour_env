@@ -9,13 +9,11 @@ module.exports = function (inject, type) {
     : false
 
   it('require env', function () {
-    console.log('------- require dat envPlugin')
     envPlugin = require('../lib')
   })
 
   if (inject) {
     it('create instance with mock properties', function () {
-      console.log('------- change dat other envPlugin')
       envPlugin = new envPlugin.Constructor(inject)
     })
   }

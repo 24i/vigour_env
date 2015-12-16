@@ -53,6 +53,8 @@ bridge.mock = {
   }
 }
 
+delete bridge.send
+
 bridge.define({
   send: function (pluginId, fnName, opts, cb) {
     return bridge.mock.methods[fnName](opts, cb)
