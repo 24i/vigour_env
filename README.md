@@ -53,3 +53,39 @@ env.button.on((data) => {
 ```
 
 See for more use cases [tests](test)
+
+#### Plugin results
+
+Values of the plugin properties on different devices/simulators
+
+###### Android Simulator
+
+- os: Android
+- osVersion: 23
+- appVersion: 1.0.0
+- model: Android SDK built for x86
+- bundleId: io.vigour.env
+- network: mobile
+- language: en
+- region: US
+- country: us
+- timezone: Europe/Amsterdam
+- platform: android
+- browser: true
+- device: tablet
+
+###### iOS Simulator
+
+- os: iPhone OS
+- osVersion: 9.2
+- appVersion: 1.0
+- model: Simulator
+- bundleId: io.vigour.env
+- network: WiFi
+- language: en
+- region: US
+- country: US
+- timezone: 2016-01-06T00:18:39+0100
+- platform: ios
+- browser: true
+- device: phone
