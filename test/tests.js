@@ -57,7 +57,6 @@ module.exports = function (inject, type) {
 
   it('should receive timezone property after the init', function (done) {
     setTimeout(function () {
-      alert("tz: " + envPlugin.timezone.val)
       expect(moment(envPlugin.timezone.val, 'YYYY-MM-DDTHH:mm:ssZ', true).isValid()).to.be.true
       done()
     }, 300)
@@ -166,7 +165,6 @@ module.exports = function (inject, type) {
     if (type === 'platform') {
       envPlugin._platform.emit('change', {network: 'none'})
     } else if (bridge) {
-      console.log('----- RECEIVE')
       let event = bridge.mock.events.changeNetworkFalse
       bridge.receive(event.eventType, event.data, 'env')
     } else {
