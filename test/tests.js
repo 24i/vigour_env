@@ -92,7 +92,7 @@ module.exports = function (inject, type) {
 
   it('should receive network property after the init', function (done) {
     setTimeout(function () {
-      expect(envPlugin.network.val).to.not.equal('none')
+      expect(envPlugin.network.val).to.not.be.false
       done()
     }, 300)
   })
@@ -159,7 +159,6 @@ module.exports = function (inject, type) {
     var previous = envPlugin.network.val
     envPlugin.network.on(() => {
       expect(envPlugin.network.val).to.not.equal(previous)
-      expect(envPlugin.network.val).to.equal('none')
       done()
     })
     if (type === 'platform') {
