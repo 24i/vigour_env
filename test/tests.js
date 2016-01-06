@@ -20,6 +20,7 @@ module.exports = function (inject, type) {
 
   // after the init we receive back all the properties expected
   it('should set plugin as ready after init', function (done) {
+    this.timeout(25000)
     envPlugin.val = true
     envPlugin.ready.is(true, function () {
       done()
@@ -56,8 +57,8 @@ module.exports = function (inject, type) {
 
   it('should receive timezone property after the init', function (done) {
     setTimeout(function () {
+      alert("tz: " + envPlugin.timezone.val)
       expect(moment(envPlugin.timezone.val, 'YYYY-MM-DDTHH:mm:ssZ', true).isValid()).to.be.true
-      expect(envPlugin.timezone.val).to.not.be.false
       done()
     }, 300)
   })

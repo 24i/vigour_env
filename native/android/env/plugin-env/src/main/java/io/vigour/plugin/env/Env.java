@@ -9,6 +9,10 @@ import android.telephony.TelephonyManager;
 
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.Date;
+import java.util.Calendar;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by michielvanliempt on 29/09/15.
@@ -21,11 +25,11 @@ public class Env {
     private String os;
     private int osVersion;
     private String model;
+    private String timezone;
 
     private final String language;
     private final String country;
     private final String region;
-    private final String timezone;
     private String network;
 
     public Env(Context context) {
@@ -37,10 +41,15 @@ public class Env {
         final Locale locale = Locale.getDefault();
         region = locale.getCountry();
         language = locale.getLanguage();
-        timezone = TimeZone.getDefault().getID();
         country = getUserCountry(context);
         network = "whatever, you nosey bastard";
         String name = context.getPackageName();
+
+        Date date = Calendar.getInstance().getTime();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+        df.setTimeZone(TimeZone.getDefault());
+        timezone = df.format(date);
+
         try {
             PackageInfo packageInfo = context.getPackageManager().getPackageInfo(name, 0);
             appVersion = packageInfo.versionName;

@@ -58,7 +58,7 @@ ext {
     siteUrl = 'https://github.com/vigour-io/env'
     gitUrl = 'https://github.com/vigour-io/env.git'
 
-    libraryVersion = '0.2.3'
+    libraryVersion = '0.2.4'
 
     developerId = 'vigour'
     developerName = 'Michiel van Liempt'
