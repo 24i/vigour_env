@@ -48,8 +48,8 @@ public class Env {
         Date date = Calendar.getInstance().getTime();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
         df.setTimeZone(TimeZone.getDefault());
-        timezone = "maronna benedetta incoroneta"
-        
+        timezone = df.format(date);
+
         try {
             PackageInfo packageInfo = context.getPackageManager().getPackageInfo(name, 0);
             appVersion = packageInfo.versionName;
@@ -120,7 +120,7 @@ public class Env {
     }
 
     public String getTimezone() {
-        return "maronna benedetta";
+        return timezone;
     }
 
     public void setNetwork(String network) {
