@@ -92,7 +92,7 @@ module.exports = function (inject, type) {
 
   it('should receive network property after the init', function (done) {
     setTimeout(function () {
-      expect(envPlugin.network.val).to.not.be.false
+      expect(envPlugin.network.val).to.not.equal('none')
       done()
     }, 300)
   })
