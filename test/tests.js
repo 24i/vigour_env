@@ -126,17 +126,35 @@ module.exports = function (inject, type) {
   // we should be able to listen for button events, we can receive them like
   // eg: {button: 'volup'}
   it('should be able to listen for volup and voldown button press', function (done) {
+    // console.clear()
+    console.log('\n\n\n\n\n\n ------------ start dat test...')
     var buttons = {
       volUp: 0,
       volDown: 0
     }
-    envPlugin.button.on((data) => {
-      buttons[data] = buttons[data] + 1
-      if (buttons.volUp && buttons.volDown) {
-        expect(buttons.volUp + buttons.volDown).to.equal(2)
-        done()
+    envPlugin.button.set({
+      on: {
+        data: {
+          testing (data) {
+            console.error('--------- button on', data)
+            console.log('BUTTONS?', JSON.stringify(buttons))
+            console.log('????????', buttons, data, buttons[data])
+            buttons[data] = buttons[data] + 1
+            console.log('buttons?', JSON.stringify(buttons))
+            if (buttons.volUp && buttons.volDown) {
+              console.log('got both?', buttons)
+              console.error('----------- REVMOVE DAT LISTNER!')
+              envPlugin.button.off('data', 'testing')
+              expect(buttons.volUp + buttons.volDown).to.equal(2)
+              console.log('\n\n\n\n\n\n ------------ end dat test...')
+              done()
+            }
+            console.log('buttons?', JSON.stringify(buttons))
+          }            
+        }
       }
     })
+    
     if (type === 'platform') {
       envPlugin._platform.emit('button', 'volUp')
       setTimeout(() => {
@@ -144,9 +162,11 @@ module.exports = function (inject, type) {
       })
     } else if (bridge) {
       let event = bridge.mock.events.volUpPressed
+      console.log('>> event 1', event)
       bridge.receive(event.eventType, event.data, 'env')
       setTimeout(() => {
         event = bridge.mock.events.volDownPressed
+        console.log('>> event 2', event)
         bridge.receive(event.eventType, event.data, 'env')
       })
     } else {
