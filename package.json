@@ -37,6 +37,7 @@
     "node": ">=0.12"
   },
   "dependencies": {
+    "lodash": "^3.10.1",
     "vigour-config": "0.0.7",
     "vigour-fs-promised": "^2.0.1",
     "vigour-ua": "~0.0.3",
