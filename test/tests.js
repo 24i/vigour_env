@@ -150,11 +150,11 @@ module.exports = function (inject, type) {
               done()
             }
             console.log('buttons?', JSON.stringify(buttons))
-          }            
+          }
         }
       }
     })
-    
+
     if (type === 'platform') {
       envPlugin._platform.emit('button', 'volUp')
       setTimeout(() => {
@@ -176,8 +176,9 @@ module.exports = function (inject, type) {
 
   // we should be able to listen for properties changes
   it('should listen for property changes', function (done) {
+    this.timeout(25000)
     var previous = envPlugin.network.val
-    envPlugin.network.on(() => {
+    envPlugin.network.on((data) => {
       expect(envPlugin.network.val).to.not.equal(previous)
       done()
     })
