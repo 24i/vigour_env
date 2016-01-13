@@ -15,13 +15,13 @@ module.exports = function (inject, type) {
   if (inject) {
     it('create instance with mock properties', function () {
       envPlugin = new envPlugin.Constructor(inject)
+      envPlugin.val = true
     })
   }
 
   // after the init we receive back all the properties expected
   it('should set plugin as ready after init', function (done) {
     this.timeout(25000)
-    envPlugin.val = true
     envPlugin.ready.is(true, function () {
       done()
     })
