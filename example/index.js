@@ -13,9 +13,9 @@ env.paused.on('data', () => {
   appendToList('Pause', env.paused.val)
 })
 
-// env.button.on('data', (data) => {
-//   appendToList('Button', env.button.val)
-// })
+env.button.on('data', (data) => {
+  appendToList('Button', env.button.val)
+})
 
 // creates button list
 var list = document.createElement('ol')
