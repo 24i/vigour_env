@@ -9,6 +9,9 @@ module.exports = exports = {}
 exports.start = function () {
   var self = this
   log.info('- adding env -')
+  log.info('this.wwwDst:', this.wwwDst)
+  log.info('this.appIndexPath', this.appIndexPath)
+
   var htmlPath = path.join(this.wwwDst, this.appIndexPath)
   var _html
   return readHtml()
