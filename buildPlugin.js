@@ -7,31 +7,29 @@ var fs = require('vigour-fs-promised')
 module.exports = exports = {}
 
 exports.start = function () {
-  var self = this
   log.info('- adding env -')
   log.info('this.wwwDst:', this.wwwDst)
   log.info('this.appIndexPath', this.appIndexPath)
 
   var htmlPath = path.join(this.wwwDst, this.appIndexPath)
-  var _html
-  return readHtml()
-    .then(addEnv)
-    .then(writeHtml)
+  var jsPath = path.join(this.wwwDst, 'build.js')
 
-  function readHtml () {
-    return fs.readFileAsync(htmlPath, 'utf8')
-      .then(function (html) {
-        _html = html
-      })
-  }
+  return Promise.all([
+    editFile(htmlPath, (contents) => {
+      return contents.replace('{{title}}', this.productName ? this.productName : 'title')
+    }),
+    editFile(jsPath, (contents) => {
+      return 'window.env={target:\'' + this.platform + '\'};' + contents
+    })
+  ])
+}
 
-  function addEnv () {
-    return 'window.env={target:\'' + self.platform + '\'}'
-  }
-
-  function writeHtml (envCode) {
-    var newHtml = _html.replace('<head>', "<head><script type='text/javascript'>" + envCode + '</script>', 'i')
-      .replace('{{title}}', self.productName ? self.productName : 'title')
-    return fs.writeFileAsync(htmlPath, newHtml, 'utf8')
-  }
+function editFile (pth, edit) {
+  return fs.readFileAsync(pth, 'utf8')
+    .then((contents) => {
+      return edit(contents)
+    })
+    .then((newContents) => {
+      return fs.writeFileAsync(pth, newContents, 'utf8')
+    })
 }
