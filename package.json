@@ -39,10 +39,10 @@
   "dependencies": {
     "lodash": "^3.10.1",
     "npmlog": "^2.0.0",
-    "vigour-config": "0.0.7",
+    "vigour-config": "~0.0.8",
     "vigour-fs-promised": "^2.0.1",
-    "vigour-ua": "~0.0.3",
-    "vigour-wrapper": "~2.2.1"
+    "vigour-ua": "~0.0.5",
+    "vigour-wrapper": "~2.2.13"
   },
   "vigour": {
     "plugin": {
