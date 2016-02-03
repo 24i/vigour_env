@@ -19,7 +19,7 @@ exports.start = function () {
       return contents.replace('{{title}}', this.productName ? this.productName : 'title')
     }),
     editFile(jsPath, (contents) => {
-      return 'window.env={target:\'' + this.platform + '\'};' + contents
+      return 'window.env={target:\'' + this.platform + '\'};window.vigour={native:{webview:true}};' + contents
     })
   ])
 }
