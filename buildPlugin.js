@@ -3,6 +3,7 @@
 var log = require('npmlog')
 var path = require('path')
 var fs = require('vigour-fs-promised')
+var nativePlatforms = ['ios', 'android']
 
 module.exports = exports = {}
 
@@ -19,7 +20,11 @@ exports.start = function () {
       return contents.replace('{{title}}', this.productName ? this.productName : 'title')
     }),
     editFile(jsPath, (contents) => {
-      return 'window.env={target:\'' + this.platform + '\'};window.vigour={native:{webview:true}};' + contents
+      var extra = 'window.env={target:\'' + this.platform + '\'};'
+      if (nativePlatforms.indexOf(this.platform) !== -1) {
+        extra += 'window.vigour={native:{webview:true}};'
+      }
+      return extra + contents
     })
   ])
 }
