@@ -3,6 +3,7 @@
 var log = require('npmlog')
 var path = require('path')
 var fs = require('vigour-fs-promised')
+var nativePlatforms = ['ios', 'android']
 
 module.exports = exports = {}
 
@@ -47,7 +48,11 @@ exports.start = function () {
   tasks.push(jsTasks.reduce((prev, curr, index, arr) => {
     return prev.then(() => {
       return editFile(curr, (contents) => {
-        return 'window.env={target:\'' + this.platform + '\'};' + contents
+        var extra = 'window.env={target:\'' + this.platform + '\'};'
+        if (nativePlatforms.indexOf(this.platform) !== -1) {
+          extra += 'window.vigour={native:{webview:true}};'
+        }
+        return extra + contents
       })
     })
   }, Promise.resolve()))
