@@ -8,20 +8,51 @@ module.exports = exports = {}
 
 exports.start = function () {
   log.info('- adding env -')
-  log.info('this.wwwDst:', this.wwwDst)
-  log.info('this.appIndexPath', this.appIndexPath)
 
-  var htmlPath = path.join(this.wwwDst, this.appIndexPath)
-  var jsPath = path.join(this.wwwDst, 'build.js')
+  var tasks = []
 
-  return Promise.all([
-    editFile(htmlPath, (contents) => {
-      return contents.replace('{{title}}', this.productName ? this.productName : 'title')
-    }),
-    editFile(jsPath, (contents) => {
-      return 'window.env={target:\'' + this.platform + '\'};' + contents
+  var htmlTasks = []
+  var htmlLocations = this.locateAsset(this.html)
+  if (htmlLocations.assets) {
+    htmlTasks.push(path.join(this.wwwDst, this.html))
+  }
+  if (htmlLocations.externalAssets) {
+    htmlTasks.push(path.join(this.externalAssetsDir, this.html))
+  }
+  if (htmlTasks.length === 0) {
+    var error = new Error('Invalid configuration')
+    error.info = "Can't find app index (" + this.html + ') to change title'
+    error.todo = 'Make sure `appIndexPath` is set to a file that appears in either `assets` or `externalAssets`'
+    throw error
+  }
+
+  tasks.push(htmlTasks.reduce((prev, curr, index, arr) => {
+    return prev.then(() => {
+      return editFile(curr, (contents) => {
+        return contents.replace('{{title}}', this.productName ? this.productName : 'title')
+      })
     })
-  ])
+  }, Promise.resolve()))
+
+  var fileName = 'build.js'
+  var jsTasks = []
+  var jsLocations = this.locateAsset(fileName)
+  if (jsLocations.assets) {
+    jsTasks.push(path.join(this.wwwDst, fileName))
+  }
+  if (jsLocations.externalAssets) {
+    jsTasks.push(path.join(this.externalAssetsDir, fileName))
+  }
+
+  tasks.push(jsTasks.reduce((prev, curr, index, arr) => {
+    return prev.then(() => {
+      return editFile(curr, (contents) => {
+        return 'window.env={target:\'' + this.platform + '\'};' + contents
+      })
+    })
+  }, Promise.resolve()))
+
+  return Promise.all(tasks)
 }
 
 function editFile (pth, edit) {
