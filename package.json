@@ -1,6 +1,6 @@
 {
   "name": "vigour-env",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "Provides info about the device, platform and build",
   "main": "lib/index.js",
   "scripts": {
