@@ -48,7 +48,11 @@
     "plugin": {
       "android": {
         "className": "io.vigour.plugin.env.EnvPlugin",
-        "instantiation": "new EnvPlugin(this)"
+        "instantiation": "new EnvPlugin(this)",
+        "permissions": [
+          "android.permission.ACCESS_NETWORK_STATE",
+          "android.permission.ACCESS_WIFI_STATE"
+        ]
       }
     }
   },
