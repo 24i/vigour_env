@@ -7,7 +7,6 @@ var nativePlatforms = ['ios', 'android']
 module.exports = exports = {}
 
 exports.start = function () {
-  log.info('- adding env -')
 
   var tasks = []
 
