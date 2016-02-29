@@ -1,7 +1,7 @@
 'use strict'
 
-var path = require('path')
-var nativePlatforms = ['ios', 'android']
+// var path = require('path')
+// var nativePlatforms = ['ios', 'android']
 
 module.exports = exports = {}
 
@@ -34,6 +34,6 @@ exports.start = function () {
   //
   //   return Promise.all(tasks)
   // } else {
-    log.info('- skipping building env -')
+  console.log('- skipping building env -')
   // }
 }
